@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+</head>
+<body>
+
+{% for place in places %}
+    <form action="{{ place.get_absolute_url }}" method="post">
+        {% csrf_token %}
+
+        <h3>{{ place.name }}</h3>
+        <p>{{ place.address }}</p>
+        <p>{{ place.description }}</p>
+        <p>Средний чек {{ place.average_check }}₽₽</p>
+        <p><img src="{{ place.poster.url }}" alt="img"></p>
+        <p>Теги: {{ place.tag_list }}</p>
+        <input type="submit" value="Выбрать">
+
+        <br>
+    </form>
+
+{% endfor %}
+</body>
+</html>

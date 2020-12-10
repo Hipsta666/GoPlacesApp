@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="{% static 'goplaces/css/main.css' %}">
+    <script src="{% static 'goplaces/js/view_map.js' %}" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=c7a1a14a-de6f-444c-b92f-12bc4ba97a68" type="text/javascript"></script>
+    <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+    {% if method == 'trans' %}
+    <script src="{% static 'goplaces/js/multiroute_masstransit.js' %}" type="text/javascript"></script>
+    {% endif %}
+    {% if method == 'walk' %}
+    <script src="{% static 'goplaces/js/multiroute_pedestrian.js' %}" type="text/javascript"></script>
+    {% endif %}
+    {% if method == 'drive' %}
+    <script src="{% static 'goplaces/js/multiroute_driving.js' %}" type="text/javascript"></script>
+    {% endif %}
+
+    <script type="text/javascript">
+        var addrFrom = 'Новосибирск,' + '{{ address_from }}';
+        var addrTo = 'Новосибирск,' + '{{ place.address }}';
+    </script>
+</head>
+<body>
+<p>{{ address_from }}</p>
+<p>{{ method }}</p>
+
+<input type="button" value="click">
+    <div id="map"></div>
+
+
+</body>
+</html>

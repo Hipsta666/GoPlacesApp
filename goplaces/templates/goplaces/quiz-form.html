@@ -1,0 +1,46 @@
+{% load static %}
+{#   c7a1a14a-de6f-444c-b92f-12bc4ba97a68   #}
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title> </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'goplaces/css/main.css' %}">
+</head>
+<body>
+
+    <div>
+        <form action="/offers/" method="POST">
+        {% csrf_token %}
+
+
+        {% for question, answers in questions.items %}
+            <p>{{question}}</p>
+            <select name="{{ question }}">
+                    {% for answer in answers %}
+                        <option>{{answer}}</option>
+                    {% endfor %}
+            </select>
+            <br><br>
+         {% endfor %}
+
+        <p>С какого адреса удобно добираться?</p>
+        <input name="addrFrom" type="text" size="30" placeholder="Например, Ленина 14">
+        <br>
+        <br>
+       <p>Как хотите добраться?</p>
+        <select name="method">
+                    <option value="walk">Пешком</option>
+                    <option value="trans">На общественном транспорте</option>
+                    <option value="drive">На машине/такси</option>
+        </select>
+        <br><br>
+
+           <p><input type="submit"/></p>
+
+        </form>
+    </div>
+</body>
+</html>
